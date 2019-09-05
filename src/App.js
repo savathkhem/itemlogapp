@@ -1,12 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Fragment } from 'react'
 import './App.css';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
-    <div>
+    <Fragment>
+      <NavBar></NavBar>
       Lets do this!
-    </div>
+      </Fragment>
   );
 }
 
