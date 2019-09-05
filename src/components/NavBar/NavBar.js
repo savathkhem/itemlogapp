@@ -1,5 +1,5 @@
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,6 +14,24 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { green, orange } from '@material-ui/core/colors';
+import theme from '../theme/muiTheme';
+
+const outerTheme = createMuiTheme({
+  palette: {
+    secondary: {
+      main: orange[500],
+    },
+  },
+});
+
+const innerTheme = createMuiTheme({
+  palette: {
+    secondary: {
+      main: green[500],
+    },
+  },
+});
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -74,8 +92,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
-  },
+ },
 }));
+
 
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
@@ -161,7 +180,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="absolute" theme={outerTheme}>
         <Toolbar>
           <IconButton
             edge="start"
