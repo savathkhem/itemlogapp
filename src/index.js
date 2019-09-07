@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import App from './pages/App';
 import * as firebase from 'firebase';
 
+// THEME
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import muiTheme from './theme/muiTheme';
+
+// FIREBASE
 var firebaseConfig = {
     apiKey: "AIzaSyAZYLec00OoaJqs3ZnUxovgVHy0QFNoL74",
     authDomain: "itemlogapp-9a157.firebaseapp.com",
@@ -13,13 +17,24 @@ var firebaseConfig = {
     messagingSenderId: "628887270649",
     appId: "1:628887270649:web:be2faa642968a5db715e28"
   };
-  // Initialize Firebase
 
+// INITIALIZE FIREBASE
 firebase.initializeApp(firebaseConfig);
+const render = Component => {
+ReactDOM.render(
+      <MuiThemeProvider theme={muiTheme}>
+        <Component />
+      </MuiThemeProvider>,
+document.getElementById('root')
+  );
+};
 
-ReactDOM.render(<App />, document.getElementById('root'));
+//RENDER ONCE
+render (App);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// WEBPACK HOT MODULE REPLACEMENT API
+if (module.hot) {
+  module.hot.accept('./pages/App', () => {
+    render(App);
+  });
+}

@@ -12,6 +12,19 @@ const theme = createMuiTheme({
       contrastText: '#fff',
     },
   },
+  shape: {
+    borderRadius: 8,
+  },
+  overrides: {
+    MuiDrawer: {
+      paper: {
+        minWidth: 256,
+      },
+      paperAnchorDockedLeft: {
+        borderRight: 'none',
+      },
+    },
+  },
 });
 
 export default theme;
